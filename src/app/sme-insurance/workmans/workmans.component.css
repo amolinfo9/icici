@@ -1,0 +1,193 @@
+.merCover {
+    font-family: "Muli", sans-serif;
+    color: #fff;
+    font-size: 2rem;
+    margin-top: 10%;
+}
+
+.bussIns.wrkCompbg {
+    height: 435px;
+    margin-top: 30%;
+    background: url(../../../assets/image/wc_banner_new.png) no-repeat 97% center;
+}
+
+.form-group {
+    display: inline-flex;
+    ;
+    flex-direction: column;
+
+}
+
+.formdiv {
+    display: flex;
+    margin-top: 4%;
+    align-items: center;
+    /* Align items vertically */
+    gap: 20px;
+    /* Optional: space between form groups */
+    max-width: 300%;
+}
+
+label {
+    margin-top: 2%;
+    color: #6189b1;
+    font-size: 14px;
+}
+
+input {
+    border: none;
+    background-color: #002e5b;
+    border-bottom: 1px solid white;
+    color: rgb(50, 49, 49);
+    padding: 2px;
+    width: 230px;
+    font-size: 14px;
+    outline: none;
+    margin-bottom: 2%;
+}
+
+select {
+    border: none;
+    background-color: #002e5b;
+    color: #fff;
+    border-bottom: 1px solid white;
+    width: 480px;
+
+}
+
+select option {
+    background-color: #ffffff;
+    color: black;
+}
+
+/* input and select focused */
+input:focus,
+select:focus {
+    border-bottom: 2px solid #f26624;
+}
+
+input[type="radio"] {
+    appearance: none;
+    /* Remove default browser styling */
+    width: 20px;
+    height: 20px;
+    border: 1px solid #fff;
+    border-radius: 50%;
+    /* Make it circular */
+    outline: none;
+    cursor: pointer;
+    background-color: #002e5b;
+    /* Default background */
+    display: inline-block;
+    position: relative;
+}
+
+input[type="radio"]:checked {
+    background-color: #f26624;
+    /* Color when selected */
+    border: 6px solid #002e5b;
+}
+
+input[type="radio"]:focus {
+    box-shadow: 0 0 4px #f26624;
+    /* Highlight on focus */
+}
+
+input[type="checkbox"] {
+    appearance: none;
+    /* Remove default browser styling */
+    width: 20px;
+    height: 20px;
+    border: 2px solid #002e5b;
+    border-radius: 4px;
+    /* Slightly rounded edges for a modern look */
+    outline: none;
+    cursor: pointer;
+    background-color: #fff;
+    /* Default background */
+    display: inline-block;
+    position: relative;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #f26624;
+    /* Color when checked */
+}
+
+input[type="checkbox"]:focus {
+    box-shadow: 0 0 4px #f26624;
+    /* Highlight on focus */
+}
+
+input[type="checkbox"]:checked::before {
+    content: '\2714';
+    /* Unicode for checkmark */
+    font-size: 14px;
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* section 2 */
+.emp_comp_insu {
+    margin-left: 20%;
+    margin-right: 20%;
+    text-align: center;
+    font-family: "Muli", sans-serif;
+    color: #000;
+    margin-top: 5%;
+
+}
+
+
+table {
+    width: 100%;
+
+    border-collapse: separate;
+    /* Ensures borders are not collapsed */
+    border-spacing: 0;
+    /* Ensures there is no spacing between cells */
+    border-radius: 15px;
+    /* Apply rounded corners to the table itself */
+    overflow: hidden;
+    /* Ensures content doesn't overflow the rounded corners */
+}
+
+table td,
+table th {
+    text-align: justify;
+    border: 1px solid rgb(234, 224, 224);
+    padding: 10px;
+}
+
+table th {
+    background-color: #dddcca;
+    padding: 3%;
+}
+
+table tr:nth-child(even) {
+    background-color: #f5f7f6;
+    /* Alternate row colors for readability */
+}
+
+.section-4-pTag {
+    font-size: 1rem;
+    line-height: 2.4rem;
+    padding-top: 0.5rem;
+    font-weight: 400;
+}
+
+/* Style for each li */
+li {
+    display: inline-flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+/* Optional: Style for the text */
+li {
+    font-size: 16px; /* Text size */
+    line-height: 1.5;
+}

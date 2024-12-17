@@ -1,0 +1,406 @@
+<section style="background-color: #002f59;">
+    <div class="container" style="display: flex;">
+        <!-- left side -->
+        <div style="margin-top: 7%; margin-left: 10%; width: 50%; margin-bottom: 5%;">
+            <!-- back button -->
+            <div>
+                <a routerLink="" style="color:#f26624; padding: auto;">
+                    <img src="../../../assets/image/back.png" alt="">
+                    Back
+                </a>
+            </div>
+            <!-- title -->
+            <h2 class="merCover">
+                Employee's Compensation Insurance
+            </h2>
+            <div class="bussIns wrkCompbg d-none d-md-block"></div>
+        </div>
+        <!-- right side -->
+        <div style="margin-top: 8%; margin-left: 0%;margin-bottom: 5%;">
+            <!-- template driven form workmens policy -->
+            <form #Worksmens_policy="ngForm">
+                <div class="form-group">
+                    <input type="hidden" name="id">
+                </div>
+                <!-- first row -->
+                <div class="formdiv">
+                    <div class="form-group">
+                        <label for="mobile-number">Mobile Number</label>
+                        <input type="text" id="mobile-number" name="mobile-number">
+                    </div>
+                    <div class="form-group">
+                        <label for="email-id">Email ID</label>
+                        <input type="email" id="email-id" name="email-id">
+                    </div>
+                </div>
+                <!-- second row -->
+                <div class="formdiv">
+                    <div class="form-group">
+                        <label for="company-name">Name of Company</label>
+                        <input type="text" id="company-name" name="company-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="pincode">Pincode</label>
+                        <input type="number" id="pincode" name="pincode">
+                    </div>
+                </div>
+                <!-- third row -->
+                <div class="formdiv">
+                    <div class="form-group">
+                        <label for="industry-category">Select Industry Category</label>
+                        <select id="industry-category" name="industry-category">
+                            <option value="0" selected="selected" style="color: black;">--Select--</option>
+                            <option value="1">Cable Laying, installation &amp; erection work - away from shop / yard
+                                risk</option>
+                            <option value="2">Builders - construction incl civil constructions</option>
+                            <option value="3">Electricity - Power supply</option>
+                            <option value="4">Cable Laying, installation &amp; erection work - shop / yard risk</option>
+                            <option value="5">Caretakers Durwans, Chowkidars and Gatekeepers</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- fourth row -->
+                <div class="formdiv">
+                    <div class="form-group">
+                        <label for="policy-period">Policy Period (Months)</label>
+                        <input type="text" id="policy-period" name="policy-period" style="width: 280%;">
+                    </div>
+                </div>
+
+                <!-- fifth row-->
+                <div class="formdiv">
+                    <div class="form-group">
+                        <label for="skilled-workers">Number of Skilled Workers</label>
+                        <input type="number" id="skilled-workers" name="skilled-workers">
+                    </div>
+                    <div class="form-group">
+                        <label for="salary-skilled-workers">Salary (per month per worker)</label>
+                        <input type="number" id="salary-skilled-workers" name="salary-skilled-workers">
+                    </div>
+                </div>
+
+                <!-- sixth row -->
+                <div class="formdiv">
+                    <div class="form-group">
+                        <label for="semi-skilled-workers">Number of Semi-Skilled Workers</label>
+                        <input type="number" id="semi-skilled-workers" name="semi-skilled-workers">
+                    </div>
+                    <div class="form-group">
+                        <label for="semi-salary-skilled-workers">Salary (per month per worker)</label>
+                        <input type="number" id="semi-salary-skilled-workers" name="semi-salary-skilled-workers">
+                    </div>
+                </div>
+
+                <!-- seveth row -->
+                <div class="formdiv">
+                    <div class="form-group">
+                        <label for="unskilled-workers">Number of Unskilled Workers</label>
+                        <input type="number" id="unskilled-workers" name="unskilled-workers">
+                    </div>
+                    <div class="form-group">
+                        <label for="salary-unskilled-workers">Salary (per month per worker)</label>
+                        <input type="number" id="salary-unskilled-workers" name="salary-unskilled-workers">
+                    </div>
+                </div>
+
+                <!-- eighth row -->
+                <div class="formdiv">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-12">
+                                <label for="claim-amount">Did you have a claim in your last policy?</label>
+                            </div>
+
+                            <!-- Yes radio button -->
+                            <div class="col-6 d-flex align-items-center">
+                                <input type="radio" id="claimYes" name="claimAmount" value="moreThan1Lac">
+                                <label for="claimYes" class="ms-2">More than Rs 1 lac claim</label>
+                            </div>
+
+                            <!-- No radio button -->
+                            <div class="col-6 d-flex align-items-center">
+                                <input type="radio" id="claimNo" name="claimAmount" value="lessThan1Lac">
+                                <label for="claimNo" class="ms-2">Less than Rs 1 lac claim</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+                <!-- nineth row -->
+
+                <!-- tenth row -->
+                <div class="formdiv">
+                    <div class="form-group">
+                        <div class="row">
+                            <!-- checkbox -1 -->
+                            <div class="col-12-flex align-items-center">
+                                <input type="checkbox" id="claimYes" name="claimAmount" value="moreThan1Lac">
+                                <label for="claimYes" class="ms-2">I agree to the Terms &amp; Conditions</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- eleventh row -->
+                <div class="formdiv mt-0">
+                    <div class="form-group">
+                        <div class="row">
+                            <!-- checkbox -2 -->
+                            <div class="col-12-flex align-items-center">
+                                <input type="checkbox" id="claimYes" name="claimAmount" value="moreThan1Lac">
+                                <label for="whatsapp">
+                                    Receive updates on
+                                    <a href="#" style="color: #7795a3; text-decoration: underline;">WhatsApp</a>
+                                </label>
+                                <img src="../../../assets/image/whatsapp.png" alt="WhatsApp">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- button row -->
+                <div class="formdiv">
+                    <div class="form-group">
+                        <button type="submit" class="btn" style="background-color: #f26624; color: white;">
+                            Proceed To Buy</button>
+                    </div>
+                    <div class="form-group">
+                        <a href="#" class="fw-small fs-5 text-decoration-none" style="color: #f26624;">
+                            Retrieve Quote
+                        </a>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+    </div>
+</section>
+<!-- section -2 -->
+<section style="background-color: #ffffff;">
+    <div class="emp_comp_insu">
+        <h2 class="fs-1 lh-sm">What is Employee's Compensation Insurance?</h2>
+
+        <div class="p-1 fs-6" style="text-align: justify;">
+            <p class="p1">
+                Every company must ensure a safe workplace, but accidents can still happen. Injuries or, in severe
+                cases, death during employment require compensation under laws like the Employee's Compensation Act 1923
+                (previously called as the Workmen's Compensation Act, 1923).
+            </p>
+
+            <p class="p1">
+                Not compensating can lead to legal issues, affecting employee confidence and the business's reputation.
+                Employee's compensation insurance (commonly known as WC policy or WC insurance) helps financially,
+                covering compensation and legal costs. It also protects against lawsuits, as employees usually give up
+                the right to sue for workplace negligence when accepting benefits. Previously known as Workmen
+                Compensation Insurance, it ensures both businesses and employees are financially protected.
+            </p>
+            <p class="p1">
+                ICICI Lombard's Employee's Compensation Insurance helps you financially safeguard your employees and
+                their families against unfortunate workplace accidents and mishaps. Most importantly, it presents you as
+                a thoughtful and caring employer who values his workforce, an asset for any organization.
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- section -3 -->
+<section style="background-color: #ffffff;">
+    <div class="emp_comp_insu">
+        <h2 class="fs-1 lh-sm">What is the Employee’s Compensation Act?</h2>
+
+        <div class="p-1 fs-6" style="text-align: justify;">
+            <p class="p1">
+                The Employee's Compensation Act, 1923 prescribes about financial compensation to employees if they
+                encounter an accident during the course of employment while doing/discharging their duties. Under this
+                law, all full-time, part-time or casual employees are liable to receive financial protection. The Act's
+                provisions kick in when employees suffer injuries that render them incapable to perform their duties or
+                they succumb to their injury.
+            </p>
+
+            <p class="p1">
+                The compensation workers are eligible to receive under this Act are:
+            </p>
+        </div>
+        <div class="mt-4 p2">
+            <table class="table">
+                <tr>
+                    <th>Scenarios</th>
+                    <th>Compensation</th>
+                </tr>
+                <tr>
+                    <td style="width: 50%;">Death resulting from an injury</td>
+                    <td>Amount equal to 50% of the monthly wages of the deceased employee multiplied by the relevant factor.
+                        <br> <br>
+                        OR
+                        <br> <br>
+                        An amount of Rs 1.2 lakhs, whichever is more
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 50%;">Permanent total disablement from injury</td>
+                    <td>An amount equal to 60% of the monthly wages of the injured employee multiplied by the relevant factor.
+                        <br> <br>
+                        OR
+                        <br> <br>
+                        An amount of Rs 1.4 lakhs, whichever is more
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 50%;">Permanent partial disablement result from the injury</td>
+                    <td>In the case of an injury specified in Part II of Schedule I, Percentage of the loss of earning capacity caused by that injury (I)
+                        <br> <br>
+                        in the case of an injury not specified in Schedule I, Proportionate to the loss of earning capacity as assessed by the qualified medical practitioner permanently caused by the injury ()
+                    </td>
+                </tr>
+                <tr>
+                    <td style="width: 50%;">Temporary disablement whether total or partial results from the injury</td>
+                    <td>A half monthly payment of the sum equivalent to 25% of monthly wages of the employee to be paid in accordance with the provisions of sub-section (2) section 4 of Employee’s Compensation Act, 1923.
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- section -4  -->
+ <section style="background-color:#fef9f5; margin-top: 5%;">
+    <div class="container" style="display: flex;">
+        <!-- left side -->
+         <div style="margin-top: 5%; width: 85%; margin-left: 5%; margin-right: 5%; margin-bottom: 5%;">
+            <div>
+                <h2 class="fs-2 lh-base fw-bold">Why do you need an Employee's Compensation Insurance Policy?</h2>
+                <p class="section-4-pTag">
+                    Having Employee's Compensation Policy (previously known as 
+                </p>
+                <p class="section-4-pTag">
+                    Workmen Compensation Policy) is crucial for these reasons:
+                </p>
+                <ul>
+                    <li>
+                        <span style="margin-right: 10px;">
+                            <img src="../../../assets/image/ui-arrow-ico.png" alt="">
+                        </span>
+                        It supports employees financially for work-related injuries, covering medical expenses
+                    </li>
+                    <li>
+                        <span style="margin-right: 10px;">
+                            <img src="../../../assets/image/ui-arrow-ico.png" alt="">
+                        </span>
+                        Prioritizing employee safety enhances your brand image, positively impacting customer and investor perceptions.
+                    </li>
+                    <li>
+                        <span style="margin-right: 10px;">
+                            <img src="../../../assets/image/ui-arrow-ico.png" alt="">
+                        </span>
+                        Compliance with contracts requiring employee's (workmen's) compensation ensures legal obligations, preventing disputes
+                    </li>
+                    <li>
+                        <span style="margin-right: 10px;">
+                            <img src="../../../assets/image/ui-arrow-ico.png" alt="">
+                        </span>
+                        Mitigating financial risks, it acts as a safety net, fostering a win-win situation for productivity and revenues.
+                    </li>
+                    <li>
+                        <span style="margin-right: 10px;">
+                            <img src="../../../assets/image/ui-arrow-ico.png" alt="">
+                        </span>
+                        It provides peace of mind, fulfilling legal duties for employers and offering financial security for employees in case of job-related injuries.
+                    </li>
+                </ul>                
+            </div>
+            
+         </div>
+    
+         <!-- right side -->
+          <div style="margin-top: 5%; width: 45%; margin-right: 5%;">
+            <img src="../../../assets/image/wc_who_needs.png" alt="" srcset="" width="100%">
+          </div>
+    </div>
+ </section>
+
+ <!-- section - 5 -->
+ <section style="margin-top: 3%;">
+    <div class="container" style="display: flex;">
+        <!-- left side -->
+        <div style="margin-top: 3%; width: 45%; margin-left: 5%;">
+            <img src="../../../assets/image/wc_whatis_included.png" alt="" srcset="" width="90%">
+          </div>
+        
+    
+         <!-- right side -->
+         <div style="margin-top: 3%; width: 85%; margin-left: 5%; margin-right: 5%;">
+            <div>
+                <h2 class="fs-2 lh-base fw-bold">What is Covered under Employee's Compensation Insurance?</h2>
+                 <h3 class="fw-bolder">
+                    The policy covers legal liability of an employer under:
+                 </h3>
+                 <ol>
+                    <li>
+                        <span style="margin-right: 10px;">
+                            <img src="../../../assets/image/ui-arrow-ico.png" alt="">
+                        </span>
+                        1. It supports employees financially for work-related injuries, covering medical expenses.
+                    </li>
+                    <li>
+                        <span style="margin-right: 10px;">
+                            <img src="../../../assets/image/ui-arrow-ico.png" alt="">
+                        </span>
+                        2. Prioritizing employee safety enhances your brand image, positively impacting customer and investor perceptions.
+                    </li>
+                    <li>
+                        <span style="margin-right: 10px;">
+                            <img src="../../../assets/image/ui-arrow-ico.png" alt="">
+                        </span>
+                        3. Compliance with contracts requiring employee's (workmen's) compensation ensures legal obligations, preventing disputes.
+                    </li>                   
+                </ol>
+
+                <h3 class="fw-bolder">
+                    Employee's Compensation Policy provides coverage for:
+                 </h3>
+                 <ul>
+                    <li>
+                        <span style="margin-right: 10px;">
+                            <img src="../../../assets/image/ui-arrow-ico.png" alt="">
+                        </span>
+                        Accidental death, Permanent total or Partial Disability and Temporary total disability suffered at the workplace during working hours
+                    </li>
+                 </ul>
+
+                 <h3 class="fw-bolder">
+                    Additionally, add-on covers provided under Employee's Compensation Insurance (previously: Workmen Compensation Policy) covers:
+                 </h3>
+                 <ul>
+                    <li>
+                        <span style="margin-right: 10px;">
+                            <img src="../../../assets/image/ui-arrow-ico.png" alt="">
+                        </span>
+                        Occupational diseases specified under Schedule III of the Employee’s Compensation Act, such as diseases caused by the use of toxic compounds.
+                    </li>
+                    <li>
+                        <span style="margin-right: 10px;">
+                            <img src="../../../assets/image/ui-arrow-ico.png" alt="">
+                        </span>
+                        Contractor and subcontractors and their employees
+                    </li>
+                    <li>
+                        <span style="margin-right: 10px;">
+                            <img src="../../../assets/image/ui-arrow-ico.png" alt="">
+                        </span>
+                        Expenses incurred on medical surgeries in case of hospitalization for more than 24 hours
+                    </li>
+                 </ul>
+                 <p class="p-1" style="text-align: justify; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Coverage under Employee's Compensation Insurance (formerly known as Workmen Compensation Insurance) is provided if, at the time of the accident, the worker is engaged in the employer's business and not doing something for personal benefit. Employee and employer relationship is one of the prerequisites for the policy''s benefits to kick in.
+                 </p>
+                                         
+            </div>
+            
+         </div>
+    </div>
+ </section>

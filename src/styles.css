@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+@import"~bootstrap/dist/css/bootstrap.css";
+/* PrimeNG Theme */
+@import 'node_modules/primeng/resources/themes/lara-light-indigo/theme.css';
+
+/* PrimeNG Core */
+@import 'node_modules/primeng/resources/primeng.min.css';
+
+/* PrimeIcons (for icons) */
+@import 'node_modules/primeicons/primeicons.css';
+
+/* PrimeFlex (optional for layout utilities) */
+@import 'node_modules/primeflex/primeflex.css';
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

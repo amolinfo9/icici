@@ -1,5 +1,92 @@
 <section style="background-color: #002f59;">
     <div class="container" style="display: flex;">
+        <!-- need help -->
+        <!-- Need Help Button -->
+        <button type="button" class="btn rounded mt-4 needHelp text-color-white" (click)="toggleHelpMenu()">
+            <img src="../../../assets/image/needhelp.svg" width="40px" height="40px" loading="lazy"
+                style="margin-right: 13px;">
+            Need Help?
+        </button>
+
+        <!-- Help Options -->
+        <div *ngIf="showHelpMenu" class="help-menu">
+            <div class="help-option mt-2" (click)="openCallbackForm()">
+                <span>📞</span> Request a Callback from Us
+            </div>
+            <div class="help-option mt-2" (click)="openWriteForm()">
+                <span>✉️</span> Write to us to get a quick reply
+            </div>
+            <div class="help-option" (click)="closetoggleHelpMenu()">
+                <img src="../../../assets/image/closeBtn.png" loading="lazy">
+            </div>
+        </div>
+
+        <!-- call back form -->
+        <div *ngIf="showActionhelp" class="modal-overlay mt-2">
+            <!-- Callback Request Modal -->
+            <div class="callback-modal">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <span>📞 Request a Callback from Us</span>
+                    <button (click)="closeModal()" class="close-btn">✕</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <p>Thank you for showing interest.<br>Enter your contact details to proceed.</p>
+
+                    <!-- Conditional Time Slot Section -->
+                    <div *ngIf="showTimeSlot" class="time-slot">
+                        <h4>Choose a Time Slot</h4>
+                        <div class="day-selection">
+                            <button [class.active]="selectedDay === 'today'" (click)="selectDay('today')">Today</button>
+                            <button [class.active]="selectedDay === 'tomorrow'"
+                                (click)="selectDay('tomorrow')">Tomorrow</button>
+                        </div>
+                        <div class="time-selection">
+                            <label for="time">Select Time</label>
+                            <select id="time" [(ngModel)]="selectedTime">
+                                <option *ngFor="let time of timeSlots" [value]="time">{{ time }}</option>
+                            </select>
+                        </div>
+                        <button class="back-btn" (click)="toggleTimeSlot()">&#x276E; Back</button>
+                    </div>
+
+                    <!-- "Choose a Time Slot" Button -->
+                    <div *ngIf="!showTimeSlot">
+                        <button class="time-slot-btn" (click)="toggleTimeSlot()">Choose a Time Slot (Optional)</button>
+                    </div>
+
+                    <!-- Input Fields -->
+                    <form #reqFormData="ngForm" (ngSubmit)="sendRequest()">
+                        <div class="input-section">
+                            <label for="name">Name</label>
+                            <input name="userName" type="text" placeholder="Enter your name" [(ngModel)]="userName">
+
+                            <label for="mobile">Mobile Number</label>
+                            <input name="mobileNumber" type="text" placeholder="Enter your mobile number"
+                                [(ngModel)]="mobileNumber">
+
+                            <label for="email">Email</label>
+                            <input name="userEmail" type="email" placeholder="Enter your email" [(ngModel)]="userEmail">
+                        </div>
+
+                        <!-- Send Request Button -->
+                        <div class="button-section">
+                            <button class="send-request" 
+                               > 
+                                Send Request
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="showActionhelp">
+
+        </div>
+
         <!-- left side -->
         <div style="margin-top: 7%; margin-left: 10%; width: 50%; margin-bottom: 5%;">
             <!-- back button -->
@@ -234,7 +321,8 @@
                 </tr>
                 <tr>
                     <td style="width: 50%;">Death resulting from an injury</td>
-                    <td>Amount equal to 50% of the monthly wages of the deceased employee multiplied by the relevant factor.
+                    <td>Amount equal to 50% of the monthly wages of the deceased employee multiplied by the relevant
+                        factor.
                         <br> <br>
                         OR
                         <br> <br>
@@ -243,7 +331,8 @@
                 </tr>
                 <tr>
                     <td style="width: 50%;">Permanent total disablement from injury</td>
-                    <td>An amount equal to 60% of the monthly wages of the injured employee multiplied by the relevant factor.
+                    <td>An amount equal to 60% of the monthly wages of the injured employee multiplied by the relevant
+                        factor.
                         <br> <br>
                         OR
                         <br> <br>
@@ -252,14 +341,18 @@
                 </tr>
                 <tr>
                     <td style="width: 50%;">Permanent partial disablement result from the injury</td>
-                    <td>In the case of an injury specified in Part II of Schedule I, Percentage of the loss of earning capacity caused by that injury (I)
+                    <td>In the case of an injury specified in Part II of Schedule I, Percentage of the loss of earning
+                        capacity caused by that injury (I)
                         <br> <br>
-                        in the case of an injury not specified in Schedule I, Proportionate to the loss of earning capacity as assessed by the qualified medical practitioner permanently caused by the injury ()
+                        in the case of an injury not specified in Schedule I, Proportionate to the loss of earning
+                        capacity as assessed by the qualified medical practitioner permanently caused by the injury ()
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 50%;">Temporary disablement whether total or partial results from the injury</td>
-                    <td>A half monthly payment of the sum equivalent to 25% of monthly wages of the employee to be paid in accordance with the provisions of sub-section (2) section 4 of Employee’s Compensation Act, 1923.
+                    <td>A half monthly payment of the sum equivalent to 25% of monthly wages of the employee to be paid
+                        in accordance with the provisions of sub-section (2) section 4 of Employee’s Compensation Act,
+                        1923.
                     </td>
                 </tr>
             </table>
@@ -268,14 +361,14 @@
 </section>
 
 <!-- section -4  -->
- <section style="background-color:#fef9f5; margin-top: 5%;">
+<section style="background-color:#fef9f5; margin-top: 5%;">
     <div class="container" style="display: flex;">
         <!-- left side -->
-         <div style="margin-top: 5%; width: 85%; margin-left: 5%; margin-right: 5%; margin-bottom: 5%;">
+        <div style="margin-top: 5%; width: 85%; margin-left: 5%; margin-right: 5%; margin-bottom: 5%;">
             <div>
                 <h2 class="fs-2 lh-base fw-bold">Why do you need an Employee's Compensation Insurance Policy?</h2>
                 <p class="section-4-pTag">
-                    Having Employee's Compensation Policy (previously known as 
+                    Having Employee's Compensation Policy (previously known as
                 </p>
                 <p class="section-4-pTag">
                     Workmen Compensation Policy) is crucial for these reasons:
@@ -291,55 +384,59 @@
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        Prioritizing employee safety enhances your brand image, positively impacting customer and investor perceptions.
+                        Prioritizing employee safety enhances your brand image, positively impacting customer and
+                        investor perceptions.
                     </li>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        Compliance with contracts requiring employee's (workmen's) compensation ensures legal obligations, preventing disputes
+                        Compliance with contracts requiring employee's (workmen's) compensation ensures legal
+                        obligations, preventing disputes
                     </li>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        Mitigating financial risks, it acts as a safety net, fostering a win-win situation for productivity and revenues.
+                        Mitigating financial risks, it acts as a safety net, fostering a win-win situation for
+                        productivity and revenues.
                     </li>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        It provides peace of mind, fulfilling legal duties for employers and offering financial security for employees in case of job-related injuries.
+                        It provides peace of mind, fulfilling legal duties for employers and offering financial security
+                        for employees in case of job-related injuries.
                     </li>
-                </ul>                
+                </ul>
             </div>
-            
-         </div>
-    
-         <!-- right side -->
-          <div style="margin-top: 5%; width: 45%; margin-right: 5%;">
-            <img src="../../../assets/image/wc_who_needs.png" alt="" srcset="" width="100%">
-          </div>
-    </div>
- </section>
 
- <!-- section - 5 -->
- <section style="margin-top: 3%;">
+        </div>
+
+        <!-- right side -->
+        <div style="margin-top: 5%; width: 45%; margin-right: 5%;">
+            <img src="../../../assets/image/wc_who_needs.png" alt="" srcset="" width="100%">
+        </div>
+    </div>
+</section>
+
+<!-- section - 5 -->
+<section style="margin-top: 3%;">
     <div class="container" style="display: flex;">
         <!-- left side -->
         <div style="margin-top: 3%; width: 45%; margin-left: 5%;">
             <img src="../../../assets/image/wc_whatis_included.png" alt="" srcset="" width="90%">
-          </div>
-        
-    
-         <!-- right side -->
-         <div style="margin-top: 3%; width: 85%; margin-left: 5%; margin-right: 5%;">
+        </div>
+
+
+        <!-- right side -->
+        <div style="margin-top: 3%; width: 85%; margin-left: 5%; margin-right: 5%;">
             <div>
                 <h2 class="fs-2 lh-base fw-bold">What is Covered under Employee's Compensation Insurance?</h2>
-                 <h3 class="fw-bolder">
+                <h3 class="fw-bolder">
                     The policy covers legal liability of an employer under:
-                 </h3>
-                 <ol>
+                </h3>
+                <ol>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
@@ -350,37 +447,42 @@
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        2. Prioritizing employee safety enhances your brand image, positively impacting customer and investor perceptions.
+                        2. Prioritizing employee safety enhances your brand image, positively impacting customer and
+                        investor perceptions.
                     </li>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        3. Compliance with contracts requiring employee's (workmen's) compensation ensures legal obligations, preventing disputes.
-                    </li>                   
+                        3. Compliance with contracts requiring employee's (workmen's) compensation ensures legal
+                        obligations, preventing disputes.
+                    </li>
                 </ol>
 
                 <h3 class="fw-bolder">
                     Employee's Compensation Policy provides coverage for:
-                 </h3>
-                 <ul>
+                </h3>
+                <ul>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        Accidental death, Permanent total or Partial Disability and Temporary total disability suffered at the workplace during working hours
+                        Accidental death, Permanent total or Partial Disability and Temporary total disability suffered
+                        at the workplace during working hours
                     </li>
-                 </ul>
+                </ul>
 
-                 <h3 class="fw-bolder">
-                    Additionally, add-on covers provided under Employee's Compensation Insurance (previously: Workmen Compensation Policy) covers:
-                 </h3>
-                 <ul>
+                <h3 class="fw-bolder">
+                    Additionally, add-on covers provided under Employee's Compensation Insurance (previously: Workmen
+                    Compensation Policy) covers:
+                </h3>
+                <ul>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        Occupational diseases specified under Schedule III of the Employee’s Compensation Act, such as diseases caused by the use of toxic compounds.
+                        Occupational diseases specified under Schedule III of the Employee’s Compensation Act, such as
+                        diseases caused by the use of toxic compounds.
                     </li>
                     <li>
                         <span style="margin-right: 10px;">
@@ -394,11 +496,14 @@
                         </span>
                         Expenses incurred on medical surgeries in case of hospitalization for more than 24 hours
                     </li>
-                 </ul>
-                 <p class="p-1" style="text-align: justify; font-family: Verdana, Geneva, Tahoma, sans-serif;">
-                    Coverage under Employee's Compensation Insurance (formerly known as Workmen Compensation Insurance) is provided if, at the time of the accident, the worker is engaged in the employer's business and not doing something for personal benefit. Employee and employer relationship is one of the prerequisites for the policy''s benefits to kick in.
-                 </p>                                          
-            </div>            
-         </div>
+                </ul>
+                <p class="p-1" style="text-align: justify; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Coverage under Employee's Compensation Insurance (formerly known as Workmen Compensation Insurance)
+                    is provided if, at the time of the accident, the worker is engaged in the employer's business and
+                    not doing something for personal benefit. Employee and employer relationship is one of the
+                    prerequisites for the policy''s benefits to kick in.
+                </p>
+            </div>
+        </div>
     </div>
- </section>
+</section>

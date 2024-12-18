@@ -1,3 +1,199 @@
+.needHelp{
+    background:transparent linear-gradient(180deg, #F16522 0%, #B02A30 100%) 0% 0% no-repeat padding-box !important;
+    position: fixed;
+    width: 206px; 
+    height: 62px;
+    padding: 16px;
+    right: 15px;
+    z-index: 10px;
+    color: #fff !important ;
+    font: 700 19px / 19px "Muli", sans-serif;
+    text-decoration: none !important;
+    
+}
+.help-menu {
+    position: fixed;
+    top: 25%;
+    right: 15px;
+    /* background-color: #fff; */
+    /* border: 1px solid #ccc; */
+    border-radius: 8px;
+    z-index: 11;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  }
+  
+  .help-option {
+    padding: 22px 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    background-color: #fff;
+    gap: 12px;
+    font-weight: 500;
+    color: #F16522;   
+    width: 280px;  
+    height: 8px;
+    border-radius: 2px;
+    border: 1px solid #F16522;
+    
+  }
+  
+  .help-option:hover {
+    background-color: #F16522;
+    color: #fff;
+  }
+ 
+  /* ------------------------------------------------------------------------------------ */
+  /* Modal Overlay */
+/* Modal Overlay */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-end; /* Shift modal to the right */
+    align-items: center;
+    z-index: 1000;
+    pointer-events: auto;
+  }
+  
+  /* Modal Box */
+  .callback-modal {
+    background: #fff;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    margin-right: 20px; /* Optional: Adds space from the edge */
+  }
+  
+  
+  .modal-header {
+    background: #004b87;
+    color: #fff;
+    padding: 12px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .modal-body {
+    padding: 16px;
+    font-family: Arial, sans-serif;
+    text-align: center;
+  }
+  
+  .modal-body p {
+    margin-bottom: 15px;
+    color: #444;
+    font-size: 14px;
+  }
+  
+  .time-slot-btn {
+    background: #ff7b00;
+    color: #fff;
+    border: 1px solid #ff7b00;
+    border-radius: 20px;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .time-slot-btn:hover {
+    background: #e66900;
+  }
+  
+  .time-slot {
+    border: 1px solid #ff7b00;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+  }
+  
+  .day-selection button {
+    margin: 5px;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+    background: #ddd;
+    color: #333;
+    cursor: pointer;
+  }
+  
+  .day-selection button.active {
+    background: #ff7b00;
+    color: #fff;
+  }
+  
+  .time-selection label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+  }
+  
+  .time-selection select {
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .input-section label {
+    display: block;
+    margin-bottom: 5px;
+    text-align: left;
+    font-weight: bold;
+  }
+  
+  .input-section input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .button-section .send-request {
+    background: #ff7b00;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
+  
+  .button-section .send-request:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .back-btn {
+    color: #ff7b00;
+    border: none;
+    background: none;
+    cursor: pointer;
+    margin-top: 10px;
+    font-weight: bold;
+  }
+  
+  /* ---------------------------------------------------------------------------------------------------------- */
+  
+
 .merCover {
     font-family: "Muli", sans-serif;
     color: #fff;

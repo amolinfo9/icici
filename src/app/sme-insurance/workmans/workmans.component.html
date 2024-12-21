@@ -108,37 +108,41 @@
         <!-- right side -->
         <div style="margin-top: 8%; margin-left: 0%;margin-bottom: 5%;">
             <!-- template driven form workmens policy -->
-            <form #Worksmens_policy="ngForm">
-                <div class="form-group">
-                    <input type="hidden" name="id">
-                </div>
+            <form #Workmens_policy="ngForm" (ngSubmit)="Workmens_policy.valid && saveWorkMensPolicy(Workmens_policy)">               
                 <!-- first row -->
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="mobile-number">Mobile Number</label>
-                        <input type="text" id="mobile-number" name="mobile-number">
+                        <input type="number"  name="mobile_number" #mobile_number="ngModel" ngModel required pattern="[0-9]{10}">
                     </div>
                     <div class="form-group">
                         <label for="email-id">Email ID</label>
-                        <input type="email" id="email-id" name="email-id">
+                        <input type="email" name="email_id" #email_id="ngModel" ngModel required>
+
+                        <div *ngIf="email_id.invalid && email_id.touched" class="text-danger">
+                            A valid email address is required.
+                        </div>
                     </div>
                 </div>
                 <!-- second row -->
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="company-name">Name of Company</label>
-                        <input type="text" id="company-name" name="company-name">
+                        <input type="text" name="company_name" #company_name="ngModel" ngModel required >
                     </div>
                     <div class="form-group">
                         <label for="pincode">Pincode</label>
-                        <input type="number" id="pincode" name="pincode">
+                        <input type="number"  name="pincode" #pincode="ngModel" ngModel required pattern="[0-9]{6}">
+                        <div *ngIf="pincode.invalid && pincode.touched" class="text-danger">
+                            Pincode is required and must be 6 digits.
+                        </div>
                     </div>
                 </div>
                 <!-- third row -->
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="industry-category">Select Industry Category</label>
-                        <select id="industry-category" name="industry-category">
+                        <select name="industry_category" #industry_category="ngModel" ngModel required >
                             <option value="0" selected="selected" style="color: black;">--Select--</option>
                             <option value="1">Cable Laying, installation &amp; erection work - away from shop / yard
                                 risk</option>
@@ -154,7 +158,7 @@
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="policy-period">Policy Period (Months)</label>
-                        <input type="text" id="policy-period" name="policy-period" style="width: 280%;">
+                        <input type="text"  name="policy_period" #policy_perio="ngModel" ngModel style="width: 280%;" required >
                     </div>
                 </div>
 
@@ -162,11 +166,11 @@
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="skilled-workers">Number of Skilled Workers</label>
-                        <input type="number" id="skilled-workers" name="skilled-workers">
+                        <input type="text" name="skilled_workers" #skilled_workers="ngModel" ngModel required >
                     </div>
                     <div class="form-group">
                         <label for="salary-skilled-workers">Salary (per month per worker)</label>
-                        <input type="number" id="salary-skilled-workers" name="salary-skilled-workers">
+                        <input type="text" name="salary_skilled_workers" #salary_skilled_workers="ngModel" ngModel required >
                     </div>
                 </div>
 
@@ -174,11 +178,11 @@
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="semi-skilled-workers">Number of Semi-Skilled Workers</label>
-                        <input type="number" id="semi-skilled-workers" name="semi-skilled-workers">
+                        <input type="text" name="semi_skilled_workers" #semi_skilled_worker="ngModel" ngModel required >
                     </div>
                     <div class="form-group">
                         <label for="semi-salary-skilled-workers">Salary (per month per worker)</label>
-                        <input type="number" id="semi-salary-skilled-workers" name="semi-salary-skilled-workers">
+                        <input type="text" name="semi_salary_unskilled_workers" #semi_salary_unskilled_workers="ngModel" ngModel required >
                     </div>
                 </div>
 
@@ -186,11 +190,11 @@
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="unskilled-workers">Number of Unskilled Workers</label>
-                        <input type="number" id="unskilled-workers" name="unskilled-workers">
+                        <input type="text"  name="unskilled_workers" #unskilled_workers="ngModel" ngModel required >
                     </div>
                     <div class="form-group">
                         <label for="salary-unskilled-workers">Salary (per month per worker)</label>
-                        <input type="number" id="salary-unskilled-workers" name="salary-unskilled-workers">
+                        <input type="text"  name="salary_unskilled_workers" #salary_unskilled_workers ="ngModel" ngModel required >
                     </div>
                 </div>
 
@@ -204,44 +208,39 @@
 
                             <!-- Yes radio button -->
                             <div class="col-6 d-flex align-items-center">
-                                <input type="radio" id="claimYes" name="claimAmount" value="moreThan1Lac">
+                                <input type="radio"  name="claimAmount" value="moreThan1Lac" #claimAmount="ngModel" ngModel required >
                                 <label for="claimYes" class="ms-2">More than Rs 1 lac claim</label>
                             </div>
 
                             <!-- No radio button -->
                             <div class="col-6 d-flex align-items-center">
-                                <input type="radio" id="claimNo" name="claimAmount" value="lessThan1Lac">
+                                <input type="radio" name="claimAmount" value="lessThan1Lac" #claimAmount="ngModel" ngModel required >
                                 <label for="claimNo" class="ms-2">Less than Rs 1 lac claim</label>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>             
 
-
-
-
-                <!-- nineth row -->
-
-                <!-- tenth row -->
+                 <!-- nineth row -->
                 <div class="formdiv">
                     <div class="form-group">
                         <div class="row">
                             <!-- checkbox -1 -->
                             <div class="col-12-flex align-items-center">
-                                <input type="checkbox" id="claimYes" name="claimAmount" value="moreThan1Lac">
+                                <input type="checkbox" name="terms_conditions" value="moreThan1Lac" #terms_conditions="ngModel" ngModel required >
                                 <label for="claimYes" class="ms-2">I agree to the Terms &amp; Conditions</label>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- eleventh row -->
+                <!-- tenth row -->
                 <div class="formdiv mt-0">
                     <div class="form-group">
                         <div class="row">
                             <!-- checkbox -2 -->
                             <div class="col-12-flex align-items-center">
-                                <input type="checkbox" id="claimYes" name="claimAmount" value="moreThan1Lac">
+                                <input type="checkbox"  name="recevieUpdate" value="moreThan1Lac" #recevieUpdate="ngModel" ngModel required >
                                 <label for="whatsapp">
                                     Receive updates on
                                     <a href="#" style="color: #7795a3; text-decoration: underline;">WhatsApp</a>
@@ -255,7 +254,7 @@
                 <!-- button row -->
                 <div class="formdiv">
                     <div class="form-group">
-                        <button type="submit" class="btn" style="background-color: #f26624; color: white;">
+                        <button type="submit" class="btn rounded" style="background-color: #f26624; color: white;">
                             Proceed To Buy</button>
                     </div>
                     <div class="form-group">

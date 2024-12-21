@@ -7,39 +7,39 @@ import { WrokmansService } from 'Shared/wrokmans.service';
   styleUrls: ['./workmans.component.css']
 })
 export class WorkmansComponent {
-   // need help ------------------------------------------------------------------
+  // need help ------------------------------------------------------------------
   public showHelpMenu: boolean = false;
 
   toggleHelpMenu(): void {
     this.showHelpMenu = true;
   }
 
-  closetoggleHelpMenu(){
+  closetoggleHelpMenu() {
     this.showHelpMenu = false;
   }
 
   // need help action ----------------------------------------------------------
-  public showActionhelp :boolean =false;
+  public showActionhelp: boolean = false;
 
   openCallbackForm(): void {
     this.showActionhelp = true;
   }
 
   // Function to close the modal
-closeModal() {
-  this.showActionhelp = false;
-}
-  
+  closeModal() {
+    this.showActionhelp = false;
+  }
+
 
   // Open Write Form
   openWriteForm(): void {
     this.showActionhelp = true;
   }
 
-//  request form ----------------------------------------------
-public reqFormData:any;
+  //  request form ----------------------------------------------
+  public reqFormData: any;
 
-id: number=1;
+  id: number = 1;
   userName: string = '';
   mobileNumber: string = '';
   userEmail: string = '';
@@ -49,53 +49,59 @@ id: number=1;
   showTimeSlot: boolean = false;
   selectedDay: string = '';
   selectedTime: string = '';
-  
-// Available time slots
-timeSlots: string[] = [
-  '10:00 AM - 11:00 AM',
-  '11:00 AM - 12:00 PM',
-  '1:00 PM - 2:00 PM',
-  '2:00 PM - 3:00 PM',
-  '4:00 PM - 5:00 PM'
-];
 
-toggleTimeSlot() {
-  this.showTimeSlot = !this.showTimeSlot;
-}
+  // Available time slots
+  timeSlots: string[] = [
+    '10:00 AM - 11:00 AM',
+    '11:00 AM - 12:00 PM',
+    '1:00 PM - 2:00 PM',
+    '2:00 PM - 3:00 PM',
+    '4:00 PM - 5:00 PM'
+  ];
 
-selectDay(day: string) {
-  this.selectedDay = day;
-}
-
-constructor(private dtService:WrokmansService){
-  
-}
-
-// Send Request
-sendRequest(data:any) {
-  if (this.userName && this.mobileNumber && this.userEmail) {
-     const formData = data.value; // Extract only form values        
-    this.dtService.RequestFormData(formData).subscribe({
-      next: () => console.log("Data sent successfully."),
-      error: (err) => console.error("Error sending data", err)
-    });
-
-    this.id++;
+  toggleTimeSlot() {
+    this.showTimeSlot = !this.showTimeSlot;
   }
-  alert('Your callback request has been sent!');  
-  this.showActionhelp = false;
-}
 
-// 2nd form
-public Worksmens_policy:any;
-// claimfield------------------------------------------------------
+  selectDay(day: string) {
+    this.selectedDay = day;
+  }
 
-  toggleClaimField(show:any) {
-    const claimField = document.getElementById('claim-field');
-    if (claimField) { // Check if claimField exists
-        claimField.style.display = show ? 'block' : 'none';
-    } else {
-        console.warn("Claim field element not found!");
+  constructor(private dtService: WrokmansService) {
+
+  }
+
+  // Send Request
+  sendRequest(data: any) {
+    if (this.userName && this.mobileNumber && this.userEmail) {
+      const formData = data.value; // Extract only form values        
+      this.dtService.getRequestFormData(formData).subscribe({
+        next: () => console.log("Data sent successfully."),
+        error: (err) => console.error("Error sending data", err),
+        complete: ()=> console.log("All done.......")
+      });
+
+      this.id++;
     }
+    alert('Your callback request has been sent!');
+    this.showActionhelp = false;
+    data.resetForm();
   }
+
+  // 2nd form
+  public Workmens_policy: any;
+
+  saveWorkMensPolicy(data: any) {
+     const formData = data.value;
+    //  console.log(formData)
+     this.dtService.getWorkMens_Comp(formData).subscribe({
+      next: () => console.log("Data sent successfully."),
+      error: (err) => console.error("Error sending data", err),
+      complete: ()=> console.log("All done.......")
+    });
+      alert('Your responce submited!');
+      data.resetForm();
+  }
+
+
 }

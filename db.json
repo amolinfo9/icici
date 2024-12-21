@@ -1,17 +1,78 @@
 {
-  "Worksmens_policy": [],
+  "Worksmens_policy": [
+    {
+      "id": "1113",
+      "mobile_number": 2154879865,
+      "email_id": "asd@gmail.com",
+      "company_name": "ABCS",
+      "pincode": 215487,
+      "industry_category": "2",
+      "policy_period": "124",
+      "skilled_workers": "100",
+      "salary_skilled_workers": "20",
+      "semi_skilled_workers": "200",
+      "semi_salary_unskilled_workers": "15",
+      "unskilled_workers": "50",
+      "salary_unskilled_workers": "10",
+      "claimAmount": "moreThan1Lac",
+      "terms_conditions": true,
+      "recevieUpdate": true
+    },
+    {
+      "id": "a702",
+      "mobile_number": 9865548712,
+      "email_id": "asd@gmail.com",
+      "company_name": "PQRS",
+      "pincode": 326598,
+      "industry_category": "4",
+      "policy_period": "120",
+      "skilled_workers": "150",
+      "salary_skilled_workers": "25",
+      "semi_skilled_workers": "300",
+      "semi_salary_unskilled_workers": "10",
+      "unskilled_workers": "100",
+      "salary_unskilled_workers": "5",
+      "claimAmount": "lessThan1Lac",
+      "terms_conditions": true,
+      "recevieUpdate": true
+    },
+    {
+      "id": "9d86",
+      "mobile_number": 9865875498,
+      "email_id": "asdf@gmail.com",
+      "company_name": "AMOLASD",
+      "pincode": 986532,
+      "industry_category": "5",
+      "policy_period": "150",
+      "skilled_workers": "140",
+      "salary_skilled_workers": "15",
+      "semi_skilled_workers": "141",
+      "semi_salary_unskilled_workers": "15",
+      "unskilled_workers": "14",
+      "salary_unskilled_workers": "5",
+      "claimAmount": "moreThan1Lac",
+      "terms_conditions": true,
+      "recevieUpdate": true
+    }
+  ],
   "reqFormData": [
     {
-      "id": 1,
+      "id": "1",
       "userName": "Amol",
       "mobileNumber": "1245",
       "userEmail": "ad@gmail.com"
     },
     {
-      "id": 2,
+      "id": "2",
       "userName": "Amol shinde",
       "mobileNumber": "124554852",
       "userEmail": "asd@gmail.com"
+    },
+    {
+      "id": 1,
+      "userName": "Raj",
+      "mobileNumber": "6598758549",
+      "userEmail": "raj@gmail.com"
     }
   ]
 }

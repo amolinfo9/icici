@@ -5,12 +5,20 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class WrokmansService {
-  private apiUrl:string = "http://localhost:3000/reqFormData";
+  private apiUrl_requestForm_workmens:string = "http://localhost:3000/reqFormData";
+  private apiUrl_workmens_Comp:string = "http://localhost:3000/Worksmens_policy";
   constructor(private http:HttpClient) { }
 
-  RequestFormData(data:any){
-    console.log("in service");
-    return this.http.post(this.apiUrl, data);
-
+  // reuestFromData
+  getRequestFormData(data:any){
+    console.log("in service-- RequestForm");
+    return this.http.post(this.apiUrl_requestForm_workmens, data);
   }
+
+  // workmens-compensation-policy
+  getWorkMens_Comp(data:any){
+    console.log("is service--- Workmens_Comp");
+    return this.http.post(this.apiUrl_workmens_Comp,data);
+  }
+
 }

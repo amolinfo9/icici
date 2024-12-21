@@ -12,6 +12,8 @@ import { MatButtonModule } from '@angular/material/button';  // Import MatButton
 import { MatMenuModule } from '@angular/material/menu';
 import { MenubarModule } from 'primeng/menubar';
 import { MenuModule } from 'primeng/menu';
+import { HttpClientModule } from '@angular/common/http';
+import { TabViewModule } from 'primeng/tabview';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { MenuModule } from 'primeng/menu';
     MatMenuModule,
     MenubarModule,
     MenuModule,
+    HttpClientModule,
+    TabViewModule
     
   ],
   providers: [],

@@ -4,6 +4,7 @@ import { WorkmansComponent } from './workmans/workmans.component';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 
+
 const rout: Routes = [
   { path: 'workmans-policy', component: WorkmansComponent }
 ];

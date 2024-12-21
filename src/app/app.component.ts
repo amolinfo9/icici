@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+[x: string]: any;
   public showlink:boolean=true;
+  activeIndex: number = 0;
 }

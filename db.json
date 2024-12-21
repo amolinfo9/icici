@@ -1,0 +1,17 @@
+{
+  "Worksmens_policy": [],
+  "reqFormData": [
+    {
+      "id": 1,
+      "userName": "Amol",
+      "mobileNumber": "1245",
+      "userEmail": "ad@gmail.com"
+    },
+    {
+      "id": 2,
+      "userName": "Amol shinde",
+      "mobileNumber": "124554852",
+      "userEmail": "asd@gmail.com"
+    }
+  ]
+}

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { WrokmansService } from 'Shared/wrokmans.service';
 
 @Component({
   selector: 'app-workmans',
@@ -6,8 +7,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./workmans.component.css']
 })
 export class WorkmansComponent {
-  public Worksmens_policy:any;
-  // need help ------------------------------------------------------------------
+   // need help ------------------------------------------------------------------
   public showHelpMenu: boolean = false;
 
   toggleHelpMenu(): void {
@@ -38,14 +38,18 @@ closeModal() {
 
 //  request form ----------------------------------------------
 public reqFormData:any;
-showTimeSlot: boolean = false;     // Toggle time slot visibility
-selectedDay: string = 'today';     // Default day selection
-selectedTime: string = '10:00 AM - 11:00 AM';
-userName: string = '';
-mobileNumber: string = '';
-userEmail: string = '';
+
+id: number=1;
+  userName: string = '';
+  mobileNumber: string = '';
+  userEmail: string = '';
 
 
+
+  showTimeSlot: boolean = false;
+  selectedDay: string = '';
+  selectedTime: string = '';
+  
 // Available time slots
 timeSlots: string[] = [
   '10:00 AM - 11:00 AM',
@@ -55,32 +59,35 @@ timeSlots: string[] = [
   '4:00 PM - 5:00 PM'
 ];
 
-// Toggle time slot section
 toggleTimeSlot() {
   this.showTimeSlot = !this.showTimeSlot;
 }
 
-// Select Day
 selectDay(day: string) {
   this.selectedDay = day;
 }
 
-constructor(){
+constructor(private dtService:WrokmansService){
   
 }
 
 // Send Request
-sendRequest() {
-  console.log('Callback Request Submitted:');
-  console.log('Name:', this.userName);
-  console.log('Mobile Number:', this.mobileNumber);
-  console.log('Email:', this.userEmail);
-  console.log('Day:', this.selectedDay);
-  console.log('Time Slot:', this.selectedTime);
+sendRequest(data:any) {
+  if (this.userName && this.mobileNumber && this.userEmail) {
+     const formData = data.value; // Extract only form values        
+    this.dtService.RequestFormData(formData).subscribe({
+      next: () => console.log("Data sent successfully."),
+      error: (err) => console.error("Error sending data", err)
+    });
+
+    this.id++;
+  }
   alert('Your callback request has been sent!');  
   this.showActionhelp = false;
 }
 
+// 2nd form
+public Worksmens_policy:any;
 // claimfield------------------------------------------------------
 
   toggleClaimField(show:any) {
@@ -91,8 +98,4 @@ sendRequest() {
         console.warn("Claim field element not found!");
     }
   }
-
-  
-
-
 }

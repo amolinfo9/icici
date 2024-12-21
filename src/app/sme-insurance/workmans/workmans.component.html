@@ -34,51 +34,54 @@
                 <!-- Modal Body -->
                 <div class="modal-body">
                     <p>Thank you for showing interest.<br>Enter your contact details to proceed.</p>
+                
+                    <form #reqFormData="ngForm" (ngSubmit)="sendRequest(reqFormData)">
 
-                    <!-- Conditional Time Slot Section -->
-                    <div *ngIf="showTimeSlot" class="time-slot">
-                        <h4>Choose a Time Slot</h4>
-                        <div class="day-selection">
-                            <button [class.active]="selectedDay === 'today'" (click)="selectDay('today')">Today</button>
-                            <button [class.active]="selectedDay === 'tomorrow'"
-                                (click)="selectDay('tomorrow')">Tomorrow</button>
+                        <!-- Conditional Time Slot Section -->
+                        <div *ngIf="showTimeSlot" class="time-slot">
+                            <h4>Choose a Time Slot</h4>
+                            <div class="day-selection">
+                                <button type="button" [class.active]="selectedDay === 'today'" (click)="selectDay('today')">Today</button>
+                                <button type="button" [class.active]="selectedDay === 'tomorrow'" (click)="selectDay('tomorrow')">Tomorrow</button>
+                            </div>
+                    
+                            <div class="time-selection">
+                                <label for="time">Select Time</label>
+                                <select id="time" name="time" [(ngModel)]="selectedTime" required>
+                                    <option *ngFor="let time of timeSlots" [value]="time">{{ time }}</option>
+                                </select>
+                            </div>
+                            <button type="button" class="back-btn" (click)="toggleTimeSlot()">&#x276E; Back</button>
                         </div>
-                        <div class="time-selection">
-                            <label for="time">Select Time</label>
-                            <select id="time" [(ngModel)]="selectedTime">
-                                <option *ngFor="let time of timeSlots" [value]="time">{{ time }}</option>
-                            </select>
+                    
+                        <!-- "Choose a Time Slot" Button -->
+                        <div *ngIf="!showTimeSlot">
+                            <button type="button" class="time-slot-btn" (click)="toggleTimeSlot()">Choose a Time Slot (Optional)</button>
                         </div>
-                        <button class="back-btn" (click)="toggleTimeSlot()">&#x276E; Back</button>
-                    </div>
-
-                    <!-- "Choose a Time Slot" Button -->
-                    <div *ngIf="!showTimeSlot">
-                        <button class="time-slot-btn" (click)="toggleTimeSlot()">Choose a Time Slot (Optional)</button>
-                    </div>
-
-                    <!-- Input Fields -->
-                    <form #reqFormData="ngForm" (ngSubmit)="sendRequest()">
+                    
+                        <!-- Input Fields -->
                         <div class="input-section">
+                            <input type="hidden" name="id" [(ngModel)]="id">
+                    
                             <label for="name">Name</label>
-                            <input name="userName" type="text" placeholder="Enter your name" [(ngModel)]="userName">
-
+                            <input id="name" name="userName" type="text" placeholder="Enter your name" [(ngModel)]="userName" required>
+                    
                             <label for="mobile">Mobile Number</label>
-                            <input name="mobileNumber" type="text" placeholder="Enter your mobile number"
-                                [(ngModel)]="mobileNumber">
-
+                            <input id="mobile" name="mobileNumber" type="text" placeholder="Enter your mobile number" [(ngModel)]="mobileNumber" required>
+                    
                             <label for="email">Email</label>
-                            <input name="userEmail" type="email" placeholder="Enter your email" [(ngModel)]="userEmail">
+                            <input id="email" name="userEmail" type="email" placeholder="Enter your email" [(ngModel)]="userEmail" required>
                         </div>
-
+                    
                         <!-- Send Request Button -->
                         <div class="button-section">
-                            <button class="send-request" 
-                               > 
+                            <button type="submit" class="send-request" [disabled]="!reqFormData.valid">
                                 Send Request
                             </button>
                         </div>
+                    
                     </form>
+                    
                 </div>
             </div>
 
@@ -507,3 +510,4 @@
         </div>
     </div>
 </section>
+

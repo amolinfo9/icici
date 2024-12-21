@@ -1,5 +1,95 @@
 <section style="background-color: #002f59;">
     <div class="container" style="display: flex;">
+        <!-- need help -->
+        <!-- Need Help Button -->
+        <button type="button" class="btn rounded mt-4 needHelp text-color-white" (click)="toggleHelpMenu()">
+            <img src="../../../assets/image/needhelp.svg" width="40px" height="40px" loading="lazy"
+                style="margin-right: 13px;">
+            Need Help?
+        </button>
+
+        <!-- Help Options -->
+        <div *ngIf="showHelpMenu" class="help-menu">
+            <div class="help-option mt-2" (click)="openCallbackForm()">
+                <span>📞</span> Request a Callback from Us
+            </div>
+            <div class="help-option mt-2" (click)="openWriteForm()">
+                <span>✉️</span> Write to us to get a quick reply
+            </div>
+            <div class="help-option" (click)="closetoggleHelpMenu()">
+                <img src="../../../assets/image/closeBtn.png" loading="lazy">
+            </div>
+        </div>
+
+        <!-- call back form -->
+        <div *ngIf="showActionhelp" class="modal-overlay mt-2">
+            <!-- Callback Request Modal -->
+            <div class="callback-modal">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <span>📞 Request a Callback from Us</span>
+                    <button (click)="closeModal()" class="close-btn">✕</button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <p>Thank you for showing interest.<br>Enter your contact details to proceed.</p>
+                
+                    <form #reqFormData="ngForm" (ngSubmit)="sendRequest(reqFormData)">
+
+                        <!-- Conditional Time Slot Section -->
+                        <div *ngIf="showTimeSlot" class="time-slot">
+                            <h4>Choose a Time Slot</h4>
+                            <div class="day-selection">
+                                <button type="button" [class.active]="selectedDay === 'today'" (click)="selectDay('today')">Today</button>
+                                <button type="button" [class.active]="selectedDay === 'tomorrow'" (click)="selectDay('tomorrow')">Tomorrow</button>
+                            </div>
+                    
+                            <div class="time-selection">
+                                <label for="time">Select Time</label>
+                                <select id="time" name="time" [(ngModel)]="selectedTime" required>
+                                    <option *ngFor="let time of timeSlots" [value]="time">{{ time }}</option>
+                                </select>
+                            </div>
+                            <button type="button" class="back-btn" (click)="toggleTimeSlot()">&#x276E; Back</button>
+                        </div>
+                    
+                        <!-- "Choose a Time Slot" Button -->
+                        <div *ngIf="!showTimeSlot">
+                            <button type="button" class="time-slot-btn" (click)="toggleTimeSlot()">Choose a Time Slot (Optional)</button>
+                        </div>
+                    
+                        <!-- Input Fields -->
+                        <div class="input-section">
+                            <input type="hidden" name="id" [(ngModel)]="id">
+                    
+                            <label for="name">Name</label>
+                            <input id="name" name="userName" type="text" placeholder="Enter your name" [(ngModel)]="userName" required>
+                    
+                            <label for="mobile">Mobile Number</label>
+                            <input id="mobile" name="mobileNumber" type="text" placeholder="Enter your mobile number" [(ngModel)]="mobileNumber" required>
+                    
+                            <label for="email">Email</label>
+                            <input id="email" name="userEmail" type="email" placeholder="Enter your email" [(ngModel)]="userEmail" required>
+                        </div>
+                    
+                        <!-- Send Request Button -->
+                        <div class="button-section">
+                            <button type="submit" class="send-request" [disabled]="!reqFormData.valid">
+                                Send Request
+                            </button>
+                        </div>
+                    
+                    </form>
+                    
+                </div>
+            </div>
+
+        </div>
+        <div *ngIf="showActionhelp">
+
+        </div>
+
         <!-- left side -->
         <div style="margin-top: 7%; margin-left: 10%; width: 50%; margin-bottom: 5%;">
             <!-- back button -->
@@ -18,37 +108,41 @@
         <!-- right side -->
         <div style="margin-top: 8%; margin-left: 0%;margin-bottom: 5%;">
             <!-- template driven form workmens policy -->
-            <form #Worksmens_policy="ngForm">
-                <div class="form-group">
-                    <input type="hidden" name="id">
-                </div>
+            <form #Workmens_policy="ngForm" (ngSubmit)="Workmens_policy.valid && saveWorkMensPolicy(Workmens_policy)">               
                 <!-- first row -->
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="mobile-number">Mobile Number</label>
-                        <input type="text" id="mobile-number" name="mobile-number">
+                        <input type="number"  name="mobile_number" #mobile_number="ngModel" ngModel required pattern="[0-9]{10}">
                     </div>
                     <div class="form-group">
                         <label for="email-id">Email ID</label>
-                        <input type="email" id="email-id" name="email-id">
+                        <input type="email" name="email_id" #email_id="ngModel" ngModel required>
+
+                        <div *ngIf="email_id.invalid && email_id.touched" class="text-danger">
+                            A valid email address is required.
+                        </div>
                     </div>
                 </div>
                 <!-- second row -->
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="company-name">Name of Company</label>
-                        <input type="text" id="company-name" name="company-name">
+                        <input type="text" name="company_name" #company_name="ngModel" ngModel required >
                     </div>
                     <div class="form-group">
                         <label for="pincode">Pincode</label>
-                        <input type="number" id="pincode" name="pincode">
+                        <input type="number"  name="pincode" #pincode="ngModel" ngModel required pattern="[0-9]{6}">
+                        <div *ngIf="pincode.invalid && pincode.touched" class="text-danger">
+                            Pincode is required and must be 6 digits.
+                        </div>
                     </div>
                 </div>
                 <!-- third row -->
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="industry-category">Select Industry Category</label>
-                        <select id="industry-category" name="industry-category">
+                        <select name="industry_category" #industry_category="ngModel" ngModel required >
                             <option value="0" selected="selected" style="color: black;">--Select--</option>
                             <option value="1">Cable Laying, installation &amp; erection work - away from shop / yard
                                 risk</option>
@@ -64,7 +158,7 @@
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="policy-period">Policy Period (Months)</label>
-                        <input type="text" id="policy-period" name="policy-period" style="width: 280%;">
+                        <input type="text"  name="policy_period" #policy_perio="ngModel" ngModel style="width: 280%;" required >
                     </div>
                 </div>
 
@@ -72,11 +166,11 @@
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="skilled-workers">Number of Skilled Workers</label>
-                        <input type="number" id="skilled-workers" name="skilled-workers">
+                        <input type="text" name="skilled_workers" #skilled_workers="ngModel" ngModel required >
                     </div>
                     <div class="form-group">
                         <label for="salary-skilled-workers">Salary (per month per worker)</label>
-                        <input type="number" id="salary-skilled-workers" name="salary-skilled-workers">
+                        <input type="text" name="salary_skilled_workers" #salary_skilled_workers="ngModel" ngModel required >
                     </div>
                 </div>
 
@@ -84,11 +178,11 @@
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="semi-skilled-workers">Number of Semi-Skilled Workers</label>
-                        <input type="number" id="semi-skilled-workers" name="semi-skilled-workers">
+                        <input type="text" name="semi_skilled_workers" #semi_skilled_worker="ngModel" ngModel required >
                     </div>
                     <div class="form-group">
                         <label for="semi-salary-skilled-workers">Salary (per month per worker)</label>
-                        <input type="number" id="semi-salary-skilled-workers" name="semi-salary-skilled-workers">
+                        <input type="text" name="semi_salary_unskilled_workers" #semi_salary_unskilled_workers="ngModel" ngModel required >
                     </div>
                 </div>
 
@@ -96,11 +190,11 @@
                 <div class="formdiv">
                     <div class="form-group">
                         <label for="unskilled-workers">Number of Unskilled Workers</label>
-                        <input type="number" id="unskilled-workers" name="unskilled-workers">
+                        <input type="text"  name="unskilled_workers" #unskilled_workers="ngModel" ngModel required >
                     </div>
                     <div class="form-group">
                         <label for="salary-unskilled-workers">Salary (per month per worker)</label>
-                        <input type="number" id="salary-unskilled-workers" name="salary-unskilled-workers">
+                        <input type="text"  name="salary_unskilled_workers" #salary_unskilled_workers ="ngModel" ngModel required >
                     </div>
                 </div>
 
@@ -114,44 +208,39 @@
 
                             <!-- Yes radio button -->
                             <div class="col-6 d-flex align-items-center">
-                                <input type="radio" id="claimYes" name="claimAmount" value="moreThan1Lac">
+                                <input type="radio"  name="claimAmount" value="moreThan1Lac" #claimAmount="ngModel" ngModel required >
                                 <label for="claimYes" class="ms-2">More than Rs 1 lac claim</label>
                             </div>
 
                             <!-- No radio button -->
                             <div class="col-6 d-flex align-items-center">
-                                <input type="radio" id="claimNo" name="claimAmount" value="lessThan1Lac">
+                                <input type="radio" name="claimAmount" value="lessThan1Lac" #claimAmount="ngModel" ngModel required >
                                 <label for="claimNo" class="ms-2">Less than Rs 1 lac claim</label>
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>             
 
-
-
-
-                <!-- nineth row -->
-
-                <!-- tenth row -->
+                 <!-- nineth row -->
                 <div class="formdiv">
                     <div class="form-group">
                         <div class="row">
                             <!-- checkbox -1 -->
                             <div class="col-12-flex align-items-center">
-                                <input type="checkbox" id="claimYes" name="claimAmount" value="moreThan1Lac">
+                                <input type="checkbox" name="terms_conditions" value="moreThan1Lac" #terms_conditions="ngModel" ngModel required >
                                 <label for="claimYes" class="ms-2">I agree to the Terms &amp; Conditions</label>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- eleventh row -->
+                <!-- tenth row -->
                 <div class="formdiv mt-0">
                     <div class="form-group">
                         <div class="row">
                             <!-- checkbox -2 -->
                             <div class="col-12-flex align-items-center">
-                                <input type="checkbox" id="claimYes" name="claimAmount" value="moreThan1Lac">
+                                <input type="checkbox"  name="recevieUpdate" value="moreThan1Lac" #recevieUpdate="ngModel" ngModel required >
                                 <label for="whatsapp">
                                     Receive updates on
                                     <a href="#" style="color: #7795a3; text-decoration: underline;">WhatsApp</a>
@@ -165,7 +254,7 @@
                 <!-- button row -->
                 <div class="formdiv">
                     <div class="form-group">
-                        <button type="submit" class="btn" style="background-color: #f26624; color: white;">
+                        <button type="submit" class="btn rounded" style="background-color: #f26624; color: white;">
                             Proceed To Buy</button>
                     </div>
                     <div class="form-group">
@@ -234,7 +323,8 @@
                 </tr>
                 <tr>
                     <td style="width: 50%;">Death resulting from an injury</td>
-                    <td>Amount equal to 50% of the monthly wages of the deceased employee multiplied by the relevant factor.
+                    <td>Amount equal to 50% of the monthly wages of the deceased employee multiplied by the relevant
+                        factor.
                         <br> <br>
                         OR
                         <br> <br>
@@ -243,7 +333,8 @@
                 </tr>
                 <tr>
                     <td style="width: 50%;">Permanent total disablement from injury</td>
-                    <td>An amount equal to 60% of the monthly wages of the injured employee multiplied by the relevant factor.
+                    <td>An amount equal to 60% of the monthly wages of the injured employee multiplied by the relevant
+                        factor.
                         <br> <br>
                         OR
                         <br> <br>
@@ -252,14 +343,18 @@
                 </tr>
                 <tr>
                     <td style="width: 50%;">Permanent partial disablement result from the injury</td>
-                    <td>In the case of an injury specified in Part II of Schedule I, Percentage of the loss of earning capacity caused by that injury (I)
+                    <td>In the case of an injury specified in Part II of Schedule I, Percentage of the loss of earning
+                        capacity caused by that injury (I)
                         <br> <br>
-                        in the case of an injury not specified in Schedule I, Proportionate to the loss of earning capacity as assessed by the qualified medical practitioner permanently caused by the injury ()
+                        in the case of an injury not specified in Schedule I, Proportionate to the loss of earning
+                        capacity as assessed by the qualified medical practitioner permanently caused by the injury ()
                     </td>
                 </tr>
                 <tr>
                     <td style="width: 50%;">Temporary disablement whether total or partial results from the injury</td>
-                    <td>A half monthly payment of the sum equivalent to 25% of monthly wages of the employee to be paid in accordance with the provisions of sub-section (2) section 4 of Employee’s Compensation Act, 1923.
+                    <td>A half monthly payment of the sum equivalent to 25% of monthly wages of the employee to be paid
+                        in accordance with the provisions of sub-section (2) section 4 of Employee’s Compensation Act,
+                        1923.
                     </td>
                 </tr>
             </table>
@@ -268,14 +363,14 @@
 </section>
 
 <!-- section -4  -->
- <section style="background-color:#fef9f5; margin-top: 5%;">
+<section style="background-color:#fef9f5; margin-top: 5%;">
     <div class="container" style="display: flex;">
         <!-- left side -->
-         <div style="margin-top: 5%; width: 85%; margin-left: 5%; margin-right: 5%; margin-bottom: 5%;">
+        <div style="margin-top: 5%; width: 85%; margin-left: 5%; margin-right: 5%; margin-bottom: 5%;">
             <div>
                 <h2 class="fs-2 lh-base fw-bold">Why do you need an Employee's Compensation Insurance Policy?</h2>
                 <p class="section-4-pTag">
-                    Having Employee's Compensation Policy (previously known as 
+                    Having Employee's Compensation Policy (previously known as
                 </p>
                 <p class="section-4-pTag">
                     Workmen Compensation Policy) is crucial for these reasons:
@@ -291,55 +386,59 @@
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        Prioritizing employee safety enhances your brand image, positively impacting customer and investor perceptions.
+                        Prioritizing employee safety enhances your brand image, positively impacting customer and
+                        investor perceptions.
                     </li>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        Compliance with contracts requiring employee's (workmen's) compensation ensures legal obligations, preventing disputes
+                        Compliance with contracts requiring employee's (workmen's) compensation ensures legal
+                        obligations, preventing disputes
                     </li>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        Mitigating financial risks, it acts as a safety net, fostering a win-win situation for productivity and revenues.
+                        Mitigating financial risks, it acts as a safety net, fostering a win-win situation for
+                        productivity and revenues.
                     </li>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        It provides peace of mind, fulfilling legal duties for employers and offering financial security for employees in case of job-related injuries.
+                        It provides peace of mind, fulfilling legal duties for employers and offering financial security
+                        for employees in case of job-related injuries.
                     </li>
-                </ul>                
+                </ul>
             </div>
-            
-         </div>
-    
-         <!-- right side -->
-          <div style="margin-top: 5%; width: 45%; margin-right: 5%;">
-            <img src="../../../assets/image/wc_who_needs.png" alt="" srcset="" width="100%">
-          </div>
-    </div>
- </section>
 
- <!-- section - 5 -->
- <section style="margin-top: 3%;">
+        </div>
+
+        <!-- right side -->
+        <div style="margin-top: 5%; width: 45%; margin-right: 5%;">
+            <img src="../../../assets/image/wc_who_needs.png" alt="" srcset="" width="100%">
+        </div>
+    </div>
+</section>
+
+<!-- section - 5 -->
+<section style="margin-top: 3%;">
     <div class="container" style="display: flex;">
         <!-- left side -->
         <div style="margin-top: 3%; width: 45%; margin-left: 5%;">
             <img src="../../../assets/image/wc_whatis_included.png" alt="" srcset="" width="90%">
-          </div>
-        
-    
-         <!-- right side -->
-         <div style="margin-top: 3%; width: 85%; margin-left: 5%; margin-right: 5%;">
+        </div>
+
+
+        <!-- right side -->
+        <div style="margin-top: 3%; width: 85%; margin-left: 5%; margin-right: 5%;">
             <div>
                 <h2 class="fs-2 lh-base fw-bold">What is Covered under Employee's Compensation Insurance?</h2>
-                 <h3 class="fw-bolder">
+                <h3 class="fw-bolder">
                     The policy covers legal liability of an employer under:
-                 </h3>
-                 <ol>
+                </h3>
+                <ol>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
@@ -350,37 +449,42 @@
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        2. Prioritizing employee safety enhances your brand image, positively impacting customer and investor perceptions.
+                        2. Prioritizing employee safety enhances your brand image, positively impacting customer and
+                        investor perceptions.
                     </li>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        3. Compliance with contracts requiring employee's (workmen's) compensation ensures legal obligations, preventing disputes.
-                    </li>                   
+                        3. Compliance with contracts requiring employee's (workmen's) compensation ensures legal
+                        obligations, preventing disputes.
+                    </li>
                 </ol>
 
                 <h3 class="fw-bolder">
                     Employee's Compensation Policy provides coverage for:
-                 </h3>
-                 <ul>
+                </h3>
+                <ul>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        Accidental death, Permanent total or Partial Disability and Temporary total disability suffered at the workplace during working hours
+                        Accidental death, Permanent total or Partial Disability and Temporary total disability suffered
+                        at the workplace during working hours
                     </li>
-                 </ul>
+                </ul>
 
-                 <h3 class="fw-bolder">
-                    Additionally, add-on covers provided under Employee's Compensation Insurance (previously: Workmen Compensation Policy) covers:
-                 </h3>
-                 <ul>
+                <h3 class="fw-bolder">
+                    Additionally, add-on covers provided under Employee's Compensation Insurance (previously: Workmen
+                    Compensation Policy) covers:
+                </h3>
+                <ul>
                     <li>
                         <span style="margin-right: 10px;">
                             <img src="../../../assets/image/ui-arrow-ico.png" alt="">
                         </span>
-                        Occupational diseases specified under Schedule III of the Employee’s Compensation Act, such as diseases caused by the use of toxic compounds.
+                        Occupational diseases specified under Schedule III of the Employee’s Compensation Act, such as
+                        diseases caused by the use of toxic compounds.
                     </li>
                     <li>
                         <span style="margin-right: 10px;">
@@ -394,13 +498,15 @@
                         </span>
                         Expenses incurred on medical surgeries in case of hospitalization for more than 24 hours
                     </li>
-                 </ul>
-                 <p class="p-1" style="text-align: justify; font-family: Verdana, Geneva, Tahoma, sans-serif;">
-                    Coverage under Employee's Compensation Insurance (formerly known as Workmen Compensation Insurance) is provided if, at the time of the accident, the worker is engaged in the employer's business and not doing something for personal benefit. Employee and employer relationship is one of the prerequisites for the policy''s benefits to kick in.
-                 </p>
-                                         
+                </ul>
+                <p class="p-1" style="text-align: justify; font-family: Verdana, Geneva, Tahoma, sans-serif;">
+                    Coverage under Employee's Compensation Insurance (formerly known as Workmen Compensation Insurance)
+                    is provided if, at the time of the accident, the worker is engaged in the employer's business and
+                    not doing something for personal benefit. Employee and employer relationship is one of the
+                    prerequisites for the policy''s benefits to kick in.
+                </p>
             </div>
-            
-         </div>
+        </div>
     </div>
- </section>
+</section>
+
